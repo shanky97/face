@@ -1,26 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet, Text,TouchableOpacity } from 'react-native';
-import {ProcessFaces} from './recognize'
+// import {ProcessFaces} from './recognize'
 import {detectFaces} from "face-recognition-react-native";
-const App = (props) => {
+export default class App extends Component {
 
+   acbc(imageUrl){
   detectFaces(imageUrl).then(result => {
             console.log("Results of the facedetection",result);
             alert(result)
   }, e => {
+      console.log("error:",e);
       
-  });
+  })
+}
 
 
 
-   return <View style={styles.conatiner}>
+  render(){ return (<View style={styles.conatiner}>
         <Text>sdsdsds</Text>
         {/* <TouchableOpacity onPress={()=>{ProcessFaces(require('./assets/pic.jpeg'))}} > */}
-        <TouchableOpacity onPress={detectFaces(require('./assets/pic.jpeg'))} >
+        <TouchableOpacity onPress={()=>{this.acbc('./assets/faces.png')}} >
 
           <Text>dsdsd</Text>
         </TouchableOpacity>
-    </View>
+    </View>)}
 }
 
 const styles = StyleSheet.create({
@@ -32,4 +35,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default App;
+
